@@ -188,6 +188,13 @@ namespace SenderHelper.Database
                 }
             }
 
+            DataTable deleteTable = tempTarget.Clone();
+            foreach (DataRow targetRow in tempTarget.Rows)
+            {
+                deleteTable.ImportRow(targetRow);
+            }
+            query.Append(BuildDelete(deleteTable));
+
             return query.ToString();
         }
 
